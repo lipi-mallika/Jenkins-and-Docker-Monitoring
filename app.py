@@ -6,10 +6,8 @@ from database.db import initialize_database
 
 app = Flask(__name__)
 
-# Create database tables when the application starts
 initialize_database()
 
-# Register monitoring routes
 app.register_blueprint(monitoring)
 
 
@@ -19,4 +17,8 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=False
+    )

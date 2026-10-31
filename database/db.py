@@ -5,7 +5,14 @@ from datetime import datetime, timezone
 
 
 # Database file location
-DB_PATH = Path(__file__).with_name("monitoring.db")
+import os
+
+DB_PATH = Path(
+    os.getenv(
+        "DB_PATH",
+        str(Path(__file__).with_name("monitoring.db"))
+    )
+)
 
 
 def get_connection():

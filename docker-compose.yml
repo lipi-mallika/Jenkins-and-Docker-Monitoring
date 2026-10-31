@@ -1,0 +1,26 @@
+
+services:
+
+  devops-monitoring:
+
+    build: .
+
+    container_name: devops-monitoring
+
+    ports:
+      - "5000:5000"
+
+    env_file:
+      - .env
+
+    environment:
+      DB_PATH: /app/data/monitoring.db
+
+    volumes:
+      # Preserve SQLite database
+      - ./data:/app/data
+
+      # Allow monitoring of Docker containers
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    restart: unless-stopped
