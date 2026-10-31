@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DevOps Monitoring Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>DevOps Monitoring Dashboard</h1>
+    <p>Jenkins and Docker Monitoring System</p>
+</header>
+
+<main>
+
+    <h2>Jenkins Overview</h2>
+
+    <section class="cards">
+
+        <div class="card">
+            <h3>Total Jobs</h3>
+            <p id="totalJobs">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Successful Jobs</h3>
+            <p id="successfulJobs">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Failed Jobs</h3>
+            <p id="failedJobs">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Running Jobs</h3>
+            <p id="runningJobs">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Average Build Duration</h3>
+            <p id="averageDuration">0 sec</p>
+        </div>
+
+    </section>
+
+    <h2>Jenkins Jobs</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Job Name</th>
+                    <th>Build Number</th>
+                    <th>Status</th>
+                    <th>Duration (ms)</th>
+                </tr>
+            </thead>
+
+            <tbody id="jobsTable">
+                <tr>
+                    <td colspan="4">Loading jobs...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Jenkins Recent Builds</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Job Name</th>
+                    <th>Build Number</th>
+                    <th>Status</th>
+                    <th>Duration (ms)</th>
+                    <th>Build Time</th>
+                </tr>
+            </thead>
+
+            <tbody id="recentBuildsTable">
+                <tr>
+                    <td colspan="5">Loading recent builds...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Docker Overview</h2>
+
+    <section class="cards">
+
+        <div class="card">
+            <h3>Total Containers</h3>
+            <p id="totalContainers">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Running Containers</h3>
+            <p id="runningContainers">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Stopped Containers</h3>
+            <p id="stoppedContainers">0</p>
+        </div>
+
+    </section>
+
+    <h2>Docker Containers</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Container Name</th>
+                    <th>Container ID</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                    <th>Health</th>
+                </tr>
+            </thead>
+
+            <tbody id="containersTable">
+                <tr>
+                    <td colspan="5">Loading containers...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Docker CPU Usage by Node</h2>
+
+    <p id="cpuError" class="error"></p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Container Name</th>
+                    <th>Container ID</th>
+                    <th>CPU Usage (%)</th>
+                </tr>
+            </thead>
+
+            <tbody id="cpuTable">
+                <tr>
+                    <td colspan="3">Loading CPU information...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p id="lastUpdated">Last updated: Waiting...</p>
+    <p id="errorMessage" class="error"></p>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+<!-- PHASE 8: HISTORICAL GRAPHS -->
+
+<section class="charts-section">
+
+    <h2>Historical Monitoring Graphs</h2>
+
+    <div class="charts-container">
+
+        <!-- Jenkins Build Duration -->
+
+        <div class="chart-card">
+
+            <h3>Jenkins Build Duration</h3>
+
+            <canvas id="jenkinsChart"></canvas>
+
+        </div>
+
+
+        <!-- Docker CPU Usage -->
+
+        <div class="chart-card">
+
+            <h3>Docker CPU Usage</h3>
+
+            <canvas id="dockerChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Chart.js Library -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- Existing live dashboard JavaScript -->
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+
+<!-- Historical graphs JavaScript -->
+
+<script src="{{ url_for('static', filename='js/history_charts.js') }}"></script>
+
+
+</body>
+</html>
